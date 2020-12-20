@@ -1,0 +1,11 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+  <p><em>Oops ! une erreur s'est produite.</em></p>
+  <p>Une erreur s'est produite. Nous nous efforçons de corriger cela dans les plus brefs délais.</p>
+    <hr>
+    {% include 'store/search_form.html' %}
+    <hr>
+    <center><img alt ="error500" src="{% static 'store/img/error500.gif' %}" ></center>
+{% endblock %}

@@ -1,0 +1,40 @@
+<div class="col-lg-12">
+    <hr>
+    <h2 class="intro-text text-center">{{ list_title }}
+    </h2>
+    <hr class="detail-separator">
+</div>
+
+{% include 'store/search_form.html' %}
+
+{% if cars|length_is:"0" %}
+    <div class="text-center">
+      Nous sommes désolés ! Nous n'avons trouvé aucun résultat à cette requête.
+    </div>
+
+{% else %}
+    {% for car in cars %}
+        <div class="col-sm-4 text-center">
+            <a href="{% url 'store:detail' car_id=car.id %}">
+              <img class="img-responsive" src="{{ car.picture.url }}" alt="{{ car.title }}">
+            </a>
+            <h3><a href="{% url 'store:detail' car_id=car.id %}">{{ car.title }}</a></h3>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+    {% endfor %}
+
+{% endif %}
+
+{% if paginate %}
+  <div class="clearfix"></div>
+  <nav aria-label="">
+    <ul class="pager">
+      {% if cars.has_previous %}
+          <li><a href="?page={{ cars.previous_page_number }}">Précédent</a></li>
+      {% endif %}
+      {% if cars.has_next %}
+          <li><a href="?page={{ cars.next_page_number }}">Suivant</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

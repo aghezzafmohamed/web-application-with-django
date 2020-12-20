@@ -1,0 +1,12 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+    <p><em>La page demandée n'est pas disponible.</em></p>
+    <p>Cette page est en cours de rénovation, elle sera disponible prochainement.</p>
+    <p>Merci de votre patience.</p>
+    <hr>
+    {% include 'store/search_form.html' %}
+    <hr>
+    <center><img alt ="error404" src="{% static 'store/img/error404.gif' %}" ></center>
+{% endblock %}

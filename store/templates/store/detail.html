@@ -1,0 +1,62 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<hr>
+<h1 class="intro-text text-center">{{ car_title }}</h1>
+<hr class="detail-separator">
+<div class="col-md-6">
+    <img src="{{ thumbnail.url }}" alt="{{ car_title }}" class="img-responsive"/>
+    <div class="section_02_subsection"><br/>
+        <div class="col-md-3">
+            <i class="fa fa-car" aria-hidden="true"> {{ car_title }} </i>
+            <i class="fa fa-users" aria-hidden="true"> 6 places et + </i>
+        </div>
+        <div class="col-md-3">
+            <i class="fa fa-road" aria-hidden="true"> {{ car_petrol | upper }} </i>
+            <i class="fa fa-check-circle-o" aria-hidden="true"> Tous risques  </i>
+        </div>
+        <div class="col-md-3">
+            <i class="fa fa-road" aria-hidden="true"> {{ car_KM }} KM </i>
+            <i class="fa fa-map-marker" aria-hidden="true"> Maroc </i>
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+  <h2 class="text-center artist_name">Réserver "{{ car_title }}"</h2>
+  <p style="margin-bottom: 20px;">Demandez-nous de mettre de côté "{{ car_title }}" et venez pour les clés dès maintenant ! </p>
+  <form class="form-horizontal" action="{% url 'store:detail' car_id=car_id %}" method="post">
+    {% csrf_token %}
+    <div class="form-group {% if form.name.errors %}has-warning has-feedback{% endif %}">
+      <label for="{{ form.name.id_for_label }}" class="control-label">Nom</label>
+      <!-- <input type="text" name="name" value="" id="name"> -->
+      {{ form.name }}
+    </div>
+
+    <div class="form-group {% if form.mail.errors %}has-warning has-feedback{% endif %}">
+      <label for="{{ form.mail.id_for_label }}" class="control-label">E-mail</label>
+      <!-- <input type="text" name="mail" value="" id="mail"> -->
+      {{ form.mail }}
+    </div>
+
+    <div class="form-group {% if form.phone_number.errors %}has-warning has-feedback{% endif %}">
+      <label for="{{ form.phone_number.id_for_label }}" class="control-label">Numéro de téléphone</label>
+      <!-- <input type="text" name="phone_number" value="" id="phone_number"> -->
+      {{ form.phone_number }}
+    </div>
+    <!-- <input type="hidden" class="hidden" value="{{ car.id }}" name="car_id"> -->
+    <center><button type="submit" class="btn btn-success">Réserver</button></center>
+  </form>
+
+    {% if errors %}
+    <div>
+      {% for key, error in errors %}
+      {% autoescape off %}
+        {{ error }}
+      {% endautoescape %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

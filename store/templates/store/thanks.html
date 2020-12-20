@@ -1,0 +1,13 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <hr>
+    <h1 class="intro-text text-center">Merci !</h1>
+    <hr class="detail-separator">
+    <p>La voiture "<em>{{ car_title }}</em>" vient d'être disponible à location. Une main délicate a déposé votre nom sur sa couverture et l'a rangé en vous attendant. Dépêchez-vous ! <em>{{ car_title }}</em></p>
+    <hr>
+    <center><img alt ="error404" src="{% static 'store/img/thanks.png' %}" ></center>
+
+{% endblock %}
